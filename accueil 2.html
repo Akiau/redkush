@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RedKush — Accueil</title>
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --card: #111;
+      --text: #fff;
+      --muted: #ccc;
+      --accent: #9b5de5;
+      --accent-dark: #6a0dad;
+      --gradient-start: #9b5de5;
+      --gradient-end: #f15bb5;
+    }
+
+    * { box-sizing: border-box; font-family:"Poppins", Arial, sans-serif; margin:0; padding:0; }
+    body { background: var(--bg); color: var(--text); overflow-x:hidden; }
+
+    /* Header */
+    header {
+      position: sticky;
+      top:0;
+      z-index:100;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      padding:15px 25px;
+      background: var(--card);
+      border-bottom: 2px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    header h1 {
+      font-size:24px;
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientSlide 5s infinite linear;
+    }
+
+    @keyframes gradientSlide {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    nav { display:flex; align-items:center; }
+    nav a {
+      color: var(--text);
+      text-decoration:none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      margin-left: 12px;
+      font-size:15px;
+      position: relative;
+      overflow:hidden;
+      transition: 0.3s;
+    }
+    nav a::before {
+      content:'';
+      position:absolute;
+      width:100%;
+      height:100%;
+      top:0;
+      left:-100%;
+      background: linear-gradient(120deg, var(--gradient-start), var(--gradient-end));
+      z-index:-1;
+      transition: all 0.5s;
+    }
+    nav a:hover::before { left:0; }
+    nav a:hover { color:#fff; }
+
+    .btn-cart {
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+      border:none;
+      color:#fff;
+      padding:8px 14px;
+      border-radius:6px;
+      cursor:pointer;
+      margin-left:10px;
+      font-size:14px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow:hidden;
+    }
+    .btn-cart:hover { transform: translateY(-2px); }
+
+    .cart-count { background:#111; border-radius:50%; padding:4px 8px; margin-left:6px; }
+
+    /* Container & Grids */
+    .accueil-container { max-width:1100px; margin:auto; padding:20px; }
+    .hero {
+      position:relative;
+      margin-top:20px;
+      border-radius:12px;
+      overflow:hidden;
+      height:300px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color:#fff;
+      text-align:center;
+      font-size:2rem;
+      font-weight:bold;
+      animation: heroPulse 4s ease-in-out infinite;
+    }
+    @keyframes heroPulse {
+      0%,100%{ transform: scale(1);}
+      50% { transform: scale(1.02);}
+    }
+
+    .photos-accueil {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+      margin-top:20px;
+    }
+    .photos-accueil div {
+      height:180px;
+      border-radius:12px;
+      overflow:hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .photos-accueil div:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(155,93,229,0.5);
+    }
+    .photos-accueil img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .texte-accueil { margin-top:25px; background:#111; padding:20px; border-radius:12px; line-height:1.6; }
+
+    .presentation { margin-bottom:25px; }
+
+    .grid-variétés {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      margin-bottom:25px;
+    }
+    .card-variete {
+      background:#222;
+      border-radius:12px;
+      padding:15px;
+      text-align:center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow:hidden;
+    }
+    .card-variete::before {
+      content:'';
+      position:absolute;
+      width:100%;
+      height:100%;
+      top:0;
+      left:-100%;
+      background: linear-gradient(120deg, var(--gradient-start), var(--gradient-end));
+      z-index:0;
+      transition: all 0.5s;
+    }
+    .card-variete:hover::before { left:0; }
+    .card-variete:hover {
+      transform: translateY(-6px);
+      box-shadow:0 0 25px rgba(155,93,229,0.6);
+    }
+    .card-variete h4 { margin:10px 0; font-size:16px; color:var(--gradient-start); position:relative; z-index:1; }
+    .card-variete p { font-size:14px; color:#ccc; margin-bottom:10px; position:relative; z-index:1; }
+    .card-variete .prix { font-weight:bold; font-size:15px; color:#fff; position:relative; z-index:1; }
+
+    /* Footer */
+    footer {
+      position: relative;
+      text-align:center;
+      color: var(--muted);
+      border-top:1px solid #222;
+      padding:12px 0 4px 0;
+      margin-top:0;
+      overflow:hidden;
+      background: var(--bg);
+    }
+    .footer-glow {
+      position:absolute;
+      bottom:0;
+      left:50%;
+      width:150%;
+      height:60px;
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+      filter: blur(40px);
+      transform:translateX(-50%);
+      z-index:-1;
+      animation: glowSlide 6s infinite linear;
+      pointer-events:none;
+    }
+    @keyframes glowSlide {
+      0% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+      50% { transform: translateX(-50%) translateY(-5px) rotate(180deg); }
+      100% { transform: translateX(-50%) translateY(0) rotate(360deg); }
+    }
+    .footer-content p { margin:0; font-size:14px; text-shadow:0 0 6px rgba(155,93,229,0.6); }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>RedKush</h1>
+  <nav>
+    <a href="produit 2.html">Produits</a>
+    <a href="contact 2.html">Contact</a>
+    <a class="btn-cart" href="panier.html">Panier 🛒 <span id="cartCount">0</span></a>
+  </nav>
+</header>
+
+<main class="accueil-container">
+
+  <div class="hero">Fleurs CBD Premium 🌿</div>
+
+  <div class="photos-accueil">
+    <div><img src="https://images.unsplash.com/photo-1593032465179-9d4c26ebd0e7?auto=format&fit=crop&w=800&q=80" alt="Image 1"></div>
+    <div><img src="https://images.unsplash.com/photo-1627383852428-8d14dc1c5a7a?auto=format&fit=crop&w=800&q=80" alt="Image 2"></div>
+    <div><img src="https://images.unsplash.com/photo-1602775812161-6c7d350f5a3b?auto=format&fit=crop&w=800&q=80" alt="Image 3"></div>
+  </div>
+
+  <div class="texte-accueil">
+    <div class="presentation">
+      <h3>Bienvenue chez RedKush 🌿</h3>
+      <p>Je suis un particulier passionné qui propose des fleurs CBD premium, <strong>100% légales</strong> et rares. Chaque produit est choisi avec soin et disponible en très petites quantités : ici, tu ne trouveras pas ces variétés ailleurs.</p>
+    </div>
+
+    <h3>Nos variétés rares 🔥</h3>
+    <div class="grid-variétés">
+      <div class="card-variete">
+        <h4>Black Velvet CBD</h4>
+        <p>Fleur sombre et résineuse, parfum sucré‑terreux unique.</p>
+        <span class="prix">12€/g</span>
+      </div>
+      <div class="card-variete">
+        <h4>Pink Haze Supreme</h4>
+        <p>Équilibre douceur florale et notes fruitées.</p>
+        <span class="prix">10€/g</span>
+      </div>
+      <div class="card-variete">
+        <h4>Frosty Gold</h4>
+        <p>Texture collante, arômes puissants, aspect givré.</p>
+        <span class="prix">14€/g</span>
+      </div>
+      <div class="card-variete">
+        <h4>Green Nebula</h4>
+        <p>Douce mais très aromatique, idéale pour découvrir le CBD.</p>
+        <span class="prix">9€/g</span>
+      </div>
+    </div>
+
+    <div class="presentation">
+      <p>Chaque lot est unique et limité. Une fois épuisé, il n’est jamais remplacé. C’est ce qui fait l’exclusivité RedKush : des produits artisanaux, rares, et de qualité premium.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content"><p>© 2025 RedKush</p></div>
+  <div class="footer-glow"></div>
+</footer>
+
+</body>
+</html>
+
+
+
